@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ElementRef, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MessageService } from './message.service';
 
 declare global {
   interface Window {
@@ -15,6 +16,10 @@ declare global {
   imports: [CommonModule],
   template: `
     <div #reactContainer></div>
+    <div *ngIf="messageFromReact" style="margin-top: 20px; padding: 20px; background: #e0f7fa; border-radius: 8px; border: 2px solid #00acc1;">
+      <h3 style="color: #00695c;">Message from React:</h3>
+      <p style="font-size: 18px; font-weight: bold;">{{ messageFromReact }}</p>
+    </div>
   `,
   styles: [`
     :host {
@@ -26,6 +31,11 @@ declare global {
 })
 export class ReactWrapperComponent implements OnInit, AfterViewInit {
   @ViewChild('reactContainer', { read: ElementRef }) container!: ElementRef;
+  @Output() messageReceived = new EventEmitter<string>();
+  
+  messageFromReact: string = '';
+
+  constructor(private messageService: MessageService) {}
 
   async ngOnInit() {
     await this.loadRemoteEntry();
@@ -34,6 +44,14 @@ export class ReactWrapperComponent implements OnInit, AfterViewInit {
   async ngAfterViewInit() {
     await this.loadReactComponent();
   }
+
+  private handleMessageFromReact = (message: string) => {
+    console.log('Message received from React:', message);
+    this.messageFromReact = message;
+    this.messageReceived.emit(message);
+    // Send to app component via service
+    this.messageService.sendMessage(message);
+  };
 
   private async loadRemoteEntry(): Promise<void> {
     return new Promise((resolve, reject) => {
@@ -104,9 +122,11 @@ export class ReactWrapperComponent implements OnInit, AfterViewInit {
         const Module = factory();
         const Component = Module.default || Module;
         
-        // Mount React component using the remote's React version
+        // Mount React component with props (pass the callback)
         const root = ReactDOM.createRoot(this.container.nativeElement);
-        root.render(React.createElement(Component));
+        root.render(React.createElement(Component, {
+          onMessageSend: this.handleMessageFromReact
+        }));
       } else {
         console.error('reactApp remote not found on window. Available:', Object.keys(containerWindow));
         this.container.nativeElement.innerHTML = `
