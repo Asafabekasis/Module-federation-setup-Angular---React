@@ -58,9 +58,37 @@ module.exports = {
     },
     port: 3001,
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
       'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+      'Access-Control-Allow-Credentials': 'true',
+    },
+    setupMiddlewares: (middlewares, devServer) => {
+      devServer.app.use((req, res, next) => {
+        const origin = req.headers.origin;
+        const referer = req.headers.referer;
+        const allowedOrigin = 'http://localhost:4200';
+        
+        // Allow direct browser access (no origin header)
+        if (!origin && !referer) {
+          return next();
+        }
+        
+        // Block requests from origins other than localhost:4200
+        if (origin && origin !== allowedOrigin) {
+          console.log(`❌ Blocked request from origin: ${origin}`);
+          return res.status(403).send('Access forbidden: Origin not allowed');
+        }
+        
+        if (referer && !referer.startsWith(allowedOrigin)) {
+          console.log(`❌ Blocked request from referer: ${referer}`);
+          return res.status(403).send('Access forbidden: Referer not allowed');
+        }
+        
+        next();
+      });
+      
+      return middlewares;
     },
   }
 };
