@@ -3,17 +3,17 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 app.use(cors());
-app.options("*", cors());
+// app.options("*", cors());
 app.use(express.json({ limit: "500000000mb" }));
 app.use(express.urlencoded({ limit: "500000000mb" }));
-const fs = require("fs");
-const path = require("path");
-const axios = require('axios');
-require('dotenv').config(); // Load default .env
-var sql = require("mssql");
-const multer = require("multer");
-const { log } = require("console");
-const CryptoJS = require("crypto-js");
+// const fs = require("fs");
+// const path = require("path");
+// const axios = require('axios');
+// require('dotenv').config(); // Load default .env
+// var sql = require("mssql");
+// const multer = require("multer");
+// const { log } = require("console");
+// const CryptoJS = require("crypto-js");
 
 
 app.get("/", function (req, res) {
