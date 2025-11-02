@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadComponent: () => import('./react-wrapper.component').then(m => m.ReactWrapperComponent),
   },
   {
+    path: 'angular',
+    loadComponent: () => import('./angular-wrapper.component').then(m => m.AngularWrapperComponent),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
