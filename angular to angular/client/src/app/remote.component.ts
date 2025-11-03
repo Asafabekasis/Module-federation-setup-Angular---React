@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -14,6 +14,13 @@ import { FormsModule } from '@angular/forms';
         <strong>Loaded by:</strong> Angular Host on Port 4200<br>
         <strong>Technology:</strong> Webpack Module Federation
       </p>
+      
+      @if (messageFromHost) {
+        <div style="margin: 20px 0; padding: 15px; background: #e8f5e9; border-radius: 8px; border: 2px solid #4caf50;">
+          <h3 style="color: #2e7d32; margin: 0 0 10px 0;">📥 Message from Host:</h3>
+          <p style="font-size: 18px; font-weight: bold; margin: 0;">{{ messageFromHost }}</p>
+        </div>
+      }
       
       <div style="margin-top: 20px;">
         <input 
@@ -37,9 +44,20 @@ import { FormsModule } from '@angular/forms';
     </div>
   `,
 })
-export class RemoteComponent {
+export class RemoteComponent implements OnInit {
   counter = 0;
   inputValue = '';
+  messageFromHost = '';
+
+  ngOnInit() {
+    // Listen for messages from the parent (Angular host)
+    window.addEventListener('message', (event: MessageEvent) => {
+      if (event.origin === 'http://localhost:4200' && event.data) {
+        this.messageFromHost = event.data;
+        console.log('✅ Angular Remote received from Host:', event.data);
+      }
+    });
+  }
 
   sendToHost() {
     if (this.inputValue.trim()) {
