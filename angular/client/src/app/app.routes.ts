@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { AngularWrapperComponent } from './angular-wrapper.component';
 
 export const routes: Routes = [
   {
-    path:'home',component: HomeComponent
+    path:'',component: AngularWrapperComponent
   },
   {
     path: 'react',
@@ -18,7 +19,7 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  {path:'**',component: HomeComponent}
+  {path:'**',component: AngularWrapperComponent}
 
   
 ];
