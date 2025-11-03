@@ -47,12 +47,6 @@ import { FormsModule } from '@angular/forms';
           </button>
         </div>
       </div>
-      
-      <div class="counter-section">
-        <button (click)="counter = counter + 1" class="counter-button">
-          🔢 Click Counter: {{ counter }}
-        </button>
-      </div>
     </div>
   `,
   styles: [`

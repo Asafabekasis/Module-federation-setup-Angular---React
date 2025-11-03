@@ -59,7 +59,7 @@ export class AngularWrapperComponent implements OnInit {
       const iframe = document.createElement('iframe');
       iframe.src = 'http://localhost:61799';
       iframe.style.width = '100%';
-      iframe.style.height = '500px';
+      iframe.style.height = '100%';
       iframe.style.border = 'none';
       iframe.style.borderRadius = '8px';
       
