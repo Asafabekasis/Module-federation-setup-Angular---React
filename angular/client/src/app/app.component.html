@@ -1,3 +1,6 @@
-<h1>Hello World from Angular Host ! @if (messageFromReact) { <span style="color: #00acc1;">{{ messageFromReact }}</span> }</h1>
+<h1>Hello World from Angular Host ! 
+  @if (messageFromReact) { <span style="color: #00acc1;">React: {{ messageFromReact }}</span> }
+  @if (messageFromAngularRemote) { <span style="color: #9c27b0;"> | Angular: {{ messageFromAngularRemote }}</span> }
+</h1>
 
 <router-outlet />
