@@ -73,15 +73,15 @@ jobs:
         node-version: '18'
     
     - name: Install dependencies
-      working-directory: ./angular to angular/client
+      working-directory: ./angular-remote/client
       run: npm ci --legacy-peer-deps
     
     - name: Build Angular Remote
-      working-directory: ./angular to angular/client
+      working-directory: ./angular-remote/client
       run: npm run build -- --configuration production
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: angular-remote-dist
-        path: angular to angular/client/dist/
+        path: angular-remote/client/dist/

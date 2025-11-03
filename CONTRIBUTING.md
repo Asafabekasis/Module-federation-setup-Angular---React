@@ -18,7 +18,7 @@ Thank you for your interest in contributing! This document provides guidelines f
 # Install all dependencies
 cd angular/client && npm install
 cd ../../react && npm install
-cd "../angular to angular/client" && npm install
+cd "../angular-remote/client" && npm install
 
 # Run all apps
 # Terminal 1
@@ -28,7 +28,7 @@ cd angular/client && ng serve
 cd react && npm start
 
 # Terminal 3
-cd "angular to angular/client" && ng serve
+cd "angular-remote/client" && ng serve
 ```
 
 ## Coding Standards

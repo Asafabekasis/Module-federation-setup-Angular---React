@@ -59,7 +59,7 @@ graph TB
 │   │   └── bootstrap.js        # Module Federation bootstrap
 │   └── webpack.config.js       # Exposes React components
 │
-└── 📂 angular to angular/client/  # 🔴 Angular Remote (Port 61799)
+└── 📂 angular-remote/client/  # 🔴 Angular Remote (Port 61799)
     ├── src/app/
     │   ├── remote.component.ts           # Remote component
     │   ├── remote-bootstrap.ts           # Web Component bootstrap
@@ -92,7 +92,7 @@ cd Module-federation-setup-Angular-React
 # Install dependencies for all apps
 cd angular/client && npm install && cd ../..
 cd react && npm install && cd ../..
-cd "angular to angular/client" && npm install && cd ../..
+cd "angular-remote/client" && npm install && cd ../..
 
 # Start all applications (requires 3 terminals)
 
@@ -107,7 +107,7 @@ npm start
 # Running at http://localhost:3000
 
 # Terminal 3 - Angular Remote (Port 61799)
-cd "angular to angular/client"
+cd "angular-remote/client"
 ng serve
 # Running at http://localhost:61799
 
@@ -121,7 +121,7 @@ ng serve
 npm install -g concurrently
 
 # Run all apps at once (from root)
-concurrently "cd angular/client && ng serve" "cd react && npm start" "cd 'angular to angular/client' && ng serve"
+concurrently "cd angular/client && ng serve" "cd react && npm start" "cd 'angular-remote/client' && ng serve"
 ```
 
 ## 💡 Key Features
@@ -314,7 +314,7 @@ export const environment = {
 # Build all applications
 cd angular/client && ng build --configuration production
 cd react && npm run build
-cd "angular to angular/client" && ng build --configuration production
+cd "angular-remote/client" && ng build --configuration production
 ```
 
 ### Deployment Strategy
@@ -347,7 +347,7 @@ MIT License - see [LICENSE](LICENSE) file for details
 
 **Asaf Abekasis**
 - GitHub: [@Asafabekasis](https://github.com/Asafabekasis)
-- LinkedIn: [Add your LinkedIn]
+- LinkedIn: [https://linkedin.com/in/asaf-abekasis]
 
 ## 🌟 Acknowledgments
 
