@@ -56,9 +56,11 @@ import { FormsModule } from '@angular/forms';
       border-radius: 12px;
       border: 3px solid #9c27b0;
       box-shadow: 0 4px 12px rgba(156, 39, 176, 0.2);
-      max-width: 100%;
+      width: 100%;
       height: 100%;
       box-sizing: border-box;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
 
     .remote-header {
@@ -96,6 +98,7 @@ import { FormsModule } from '@angular/forms';
       color: #333;
       font-size: 15px;
       line-height: 1.6;
+      word-wrap: break-word;
     }
 
     .info-item strong {
@@ -110,6 +113,7 @@ import { FormsModule } from '@angular/forms';
       margin-bottom: 25px;
       border: 2px solid #4caf50;
       animation: slideIn 0.3s ease-out;
+      word-wrap: break-word;
     }
 
     .message-from-host h3 {
@@ -124,6 +128,7 @@ import { FormsModule } from '@angular/forms';
       font-size: 18px;
       font-weight: 700;
       color: #1b5e20;
+      word-break: break-word;
     }
 
     .input-section {
@@ -147,18 +152,19 @@ import { FormsModule } from '@angular/forms';
     .input-group {
       display: flex;
       gap: 10px;
-      flex-wrap: wrap;
+      align-items: stretch;
     }
 
     .angular-input {
       flex: 1;
-      min-width: 250px;
+      max-width: calc(100% - 150px);
       padding: 12px 16px;
       font-size: 15px;
       border-radius: 6px;
       border: 2px solid #9c27b0;
       font-family: inherit;
       transition: all 0.3s ease;
+      box-sizing: border-box;
     }
 
     .angular-input:focus {
@@ -168,7 +174,7 @@ import { FormsModule } from '@angular/forms';
     }
 
     .angular-button {
-      padding: 12px 28px;
+      padding: 12px 24px;
       font-size: 15px;
       font-weight: 600;
       background: linear-gradient(135deg, #9c27b0 0%, #6a1b9a 100%);
@@ -180,6 +186,8 @@ import { FormsModule } from '@angular/forms';
       letter-spacing: 0.5px;
       transition: all 0.3s ease;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .angular-button:hover {
@@ -190,30 +198,6 @@ import { FormsModule } from '@angular/forms';
 
     .angular-button:active {
       transform: translateY(0);
-    }
-
-    .counter-section {
-      display: flex;
-      justify-content: center;
-    }
-
-    .counter-button {
-      padding: 12px 24px;
-      font-size: 16px;
-      font-weight: 600;
-      background: linear-gradient(135deg, #7b1fa2 0%, #6a1b9a 100%);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .counter-button:hover {
-      background: linear-gradient(135deg, #6a1b9a 0%, #4a148c 100%);
-      transform: scale(1.05);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
 
     @keyframes slideIn {
@@ -229,7 +213,7 @@ import { FormsModule } from '@angular/forms';
 
     @media (max-width: 600px) {
       .angular-remote-container {
-        padding: 20px;
+        padding: 15px;
       }
 
       .input-group {
@@ -237,7 +221,7 @@ import { FormsModule } from '@angular/forms';
       }
 
       .angular-input {
-        min-width: 100%;
+        max-width: 100%;
       }
 
       .angular-button {

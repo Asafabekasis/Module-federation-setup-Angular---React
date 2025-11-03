@@ -16,10 +16,16 @@ declare const window: any;
     </div>
   `,
   styles: [`
-    .angular-wrapper-container {
+    :host {
+      display: block;
       width: 100%;
       height: 100%;
-      min-height: 400px;
+    }
+
+    .angular-wrapper-container {
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
     }
 
     .error-message {
@@ -59,9 +65,10 @@ export class AngularWrapperComponent implements OnInit {
       const iframe = document.createElement('iframe');
       iframe.src = 'http://localhost:61799';
       iframe.style.width = '100%';
-      iframe.style.height = '100%';
+      iframe.style.height = '500px';
       iframe.style.border = 'none';
       iframe.style.borderRadius = '8px';
+      iframe.style.overflow = 'hidden';
       
       this.container.nativeElement.appendChild(iframe);
       
