@@ -182,14 +182,16 @@ shared: {
 ## 🎨 Screenshots
 
 ### Home Dashboard - Side-by-Side Remotes
-*Both React and Angular remotes displayed simultaneously*
+*Both React and Angular remotes displayed simultaneously with bidirectional communication*
 
-![Dashboard](https://via.placeholder.com/800x400?text=Add+Screenshot+Here)
+![Module Federation Dashboard](./screenshots/dashboard.png)
 
-### Bidirectional Communication
-*Messages flowing between host and remotes*
-
-![Communication](https://via.placeholder.com/800x400?text=Add+Screenshot+Here)
+**Key Features Shown:**
+- 🔵 React Remote (Port 3000) - Left side with cyan styling
+- 🔴 Angular Remote (Port 61799) - Right side with purple styling
+- 📨 Message inputs for sending data to each remote
+- 📬 Real-time message display from remotes to host
+- 🔄 Bidirectional communication via CustomEvents
 
 ### Route-Based Loading
 *Full-page remote via `/angular-children` route*
